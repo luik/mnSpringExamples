@@ -19,7 +19,7 @@ public class SessionTestApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		initializerManager.initialize(); 
-		
+		initializerManager.initialize();
+		initializerManager.testData();
 	}
 }

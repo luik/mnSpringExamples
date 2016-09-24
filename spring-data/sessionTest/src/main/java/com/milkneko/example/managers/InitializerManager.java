@@ -1,8 +1,11 @@
 package com.milkneko.example.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -16,6 +19,7 @@ import com.milkneko.example.repositories.PetRepository;
 import com.milkneko.example.repositories.VeterinaryRepository;
 
 @Component
+@Transactional
 public class InitializerManager {
 	
 	@Autowired
@@ -26,9 +30,9 @@ public class InitializerManager {
 	private CustomerRepository customerRepository;
 	@Autowired
 	private PetRepository petRepository;
+	@Autowired
+	private DataSourceTransactionManagerAutoConfiguration dataSourceTransactionManager;
 
-
-	
 	public void initialize(){
 		System.out.println("initialize");
 		
@@ -61,21 +65,17 @@ public class InitializerManager {
 				petRepository.save(pet);
 			}
 		}
-		
-		testData();
 	}
-	
-	@Transactional
-	private void testData(){
+
+	public void testData(){
+		//System.out.println(dataSourceTransactionManager);
 		Veterinary veterinary = veterinaryRepository.findAll().get(0);
-		
-		veterinary.getCustomer().size();
-		
+
 		for (Customer customer : veterinary.getCustomer()) {
 			System.out.println(customer.getName());
-			
+
 			customer.getPet().size();
-			
+
 			for (Pet pet : customer.getPet()) {
 				System.out.println(pet.getName());
 			}
