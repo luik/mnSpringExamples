@@ -1,13 +1,8 @@
 package com.milkneko.example.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.milkneko.example.model.Customer;
 import com.milkneko.example.model.Medic;
@@ -30,8 +25,6 @@ public class InitializerManager {
 	private CustomerRepository customerRepository;
 	@Autowired
 	private PetRepository petRepository;
-	@Autowired
-	private DataSourceTransactionManagerAutoConfiguration dataSourceTransactionManager;
 
 	public void initialize(){
 		System.out.println("initialize");
