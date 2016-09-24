@@ -1,6 +1,7 @@
 package com.milkneko.example.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -15,7 +16,6 @@ import com.milkneko.example.repositories.PetRepository;
 import com.milkneko.example.repositories.VeterinaryRepository;
 
 @Component
-@EnableTransactionManagement
 public class InitializerManager {
 	
 	@Autowired
@@ -26,6 +26,8 @@ public class InitializerManager {
 	private CustomerRepository customerRepository;
 	@Autowired
 	private PetRepository petRepository;
+
+
 	
 	public void initialize(){
 		System.out.println("initialize");
